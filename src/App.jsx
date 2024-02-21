@@ -1,14 +1,5 @@
 import React from "react";
 import "./App.css";
-import PropTypes from 'prop-types';
-
-Square.propTypes = {
-  children: PropTypes.node,
-  isSelected: PropTypes.bool,
-  updateBoard: PropTypes.func,
-  updateTurn: PropTypes.func,
-  index: PropTypes.number
-};
 
 const TURNS = {
   PLAYER1: "X",
@@ -19,7 +10,7 @@ const Square = ({ children, isSelected, updateBoard, updateTurn, index }) => {
   const className = `square ${isSelected ? `is-selected` : ""}`;
 
   const handleClick = () => {
-    if(children) return;
+    if (children) return;
     updateBoard(index);
     updateTurn();
   };
@@ -74,9 +65,12 @@ function App() {
           Play Again
         </button>
       </section>
-      {
-        board.includes(null) ? null : <h2>Game Over</h2>
-      }
+      {board.includes(null) ? null : (
+        <>
+          <h2>Game Over</h2>
+          <h3 style={{ marginTop: 10 }}>The Win is the player: {turn}</h3>
+        </>
+      )}
     </main>
   );
 }
